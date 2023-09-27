@@ -49,14 +49,14 @@ def check(uname: str):
     data = WebDriverWait(driver, 9).until(EC.presence_of_element_located((By.TAG_NAME, 'ul')))
     val = data.find_elements(By.TAG_NAME, 'li')
     
-    posts = val[0].text.split()[0]
-    followers = val[1].text.split()[0]
+    posts = int(val[0].text.split()[0].replace(',', ''))
+    followers = int(val[1].text.split()[0].replace(',', ''))
     following = int(val[2].text.split()[0].replace(',', ''))
     bios = bioElement.text
     fullName = WebDriverWait(driver, 9).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'span.x1lliihq'))).text
 
     a = len(target)
-    a = str(a)
+    a = str(a).replace(',', '')
     UserNameLen = len(target)
     UserNameLen = float(UserNameLen)
 
@@ -115,9 +115,9 @@ def check(uname: str):
   integer_array = integer_array[1:]
 
   if(integer_array == 0):
-    check = 'real'
-  else:
     check = 'fake'
+  else:
+    check = 'real'
 
   """ if(integer_array == 0):
     check = 'real'
